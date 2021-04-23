@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/normalize.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <title>Weather Panel</title>
-</head>
-<body>
-    <div class="container">
-        <div class="current-condition">
-            <div class="location">New York</div>
-            <div class="condition">Sunny</div>
-            <div class="temperature">63</div>
-            <div class="high-low">
-                <span id="high-temp">64</span><span id="low-temp">37</span>
-            </div>
+  </head>
+  <body>
+    <div class="row">
+      <div class="current-condition col-sm-12 col-md-6">
+        <div class="location text-center">New York</div>
+        <div class="condition text-center">Sunny</div>
+        <div class="temperature text-center">63</div>
+        <div class="high-low text-center">
+          <span id="high-temp">64</span><span id="low-temp">37</span>
         </div>
+      </div>
+      <div class="forecast col-sm-12 col-md-6">
+          <div class="day">Monday</div>
+          <div class="day">Tuesday</div>
+          <div class="day">Wednesday</div>
+          <div class="day">Thursday</div>
+          <div class="day">Friday</div>
+      </div>
     </div>
-</body>
+
+
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
