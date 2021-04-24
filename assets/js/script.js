@@ -1,8 +1,16 @@
 var mainLocationEl = $(".main-location");
 var mainConditionEl = $(".main-condition");
-var mainTemperatureEl = $(".main-temperature");
+var mainTempSpan = $("#main-temp");
 var mainHighTempSpan = $("#main-high-temp");
 var mainLowTempSpan = $("#main-low-temp");
+
+function populateCurrentWeatherData(weatherData) {
+  mainLocationEl.text(weatherData.name);
+  mainConditionEl.text(weatherData.weather[0].description);
+  mainTempSpan.text(Math.round(weatherData.main.temp));
+  mainHighTempSpan.text(Math.round(weatherData.main.temp_max));
+  mainLowTempSpan.text(Math.round(weatherData.main.temp_min));
+}
 
 function getCurrentWeatherData() {
   var apiKey = "5522e24e3f2cbcf4ca631dd68ebac697";
@@ -14,12 +22,7 @@ function getCurrentWeatherData() {
       return response.json();
     })
     .then(function (data) {
-      var weatherData = data;
-      mainLocationEl.text(weatherData.name)
-      mainConditionEl.text(weatherData.weather[0].description)
-      mainTemperatureEl.text(weatherData.main.temp)
-      mainHighTempSpan.text(weatherData.main.temp_max)
-      mainLowTempSpan.text(weatherData.main.temp_min)
+      populateCurrentWeatherData(data);
     });
 }
 
