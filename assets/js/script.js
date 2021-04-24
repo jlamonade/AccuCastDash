@@ -15,6 +15,11 @@ function getCurrentWeatherData() {
     })
     .then(function (data) {
       var weatherData = data;
+      mainLocationEl.text(weatherData.name)
+      mainConditionEl.text(weatherData.weather[0].description)
+      mainTemperatureEl.text(weatherData.main.temp)
+      mainHighTempSpan.text(weatherData.main.temp_max)
+      mainLowTempSpan.text(weatherData.main.temp_min)
     });
 }
 
