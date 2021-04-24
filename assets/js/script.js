@@ -18,7 +18,6 @@ function populateCurrentWeatherData(weatherData) {
   mainTempSpan.text(Math.round(weatherData.main.temp));
   mainHighTempSpan.text(Math.round(weatherData.main.temp_max));
   mainLowTempSpan.text(Math.round(weatherData.main.temp_min));
-  
 }
 
 function populateForecastWeatherData(forecastArr) {
@@ -62,5 +61,5 @@ function getForecastWeatherData() {
         populateForecastWeatherData(forecastArr);
     })
 }
-getForecastWeatherData();
-getCurrentWeatherData();
+// getForecastWeatherData();
+// getCurrentWeatherData();
