@@ -4,6 +4,9 @@ var mainTempSpan = $("#main-temp");
 var mainHighTempSpan = $("#main-high-temp");
 var mainLowTempSpan = $("#main-low-temp");
 
+var cityName = "new+york"
+var apiKey = "5522e24e3f2cbcf4ca631dd68ebac697"
+
 function populateCurrentWeatherData(weatherData) {
   mainLocationEl.text(weatherData.name);
   mainConditionEl.text(weatherData.weather[0].description);
@@ -13,8 +16,6 @@ function populateCurrentWeatherData(weatherData) {
 }
 
 function getCurrentWeatherData() {
-  var apiKey = "5522e24e3f2cbcf4ca631dd68ebac697";
-  var cityName = "new+york";
   var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`;
 
   fetch(requestUrl)
@@ -26,4 +27,19 @@ function getCurrentWeatherData() {
     });
 }
 
-getCurrentWeatherData();
+function getForecastWeatherData() {
+    var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`
+    
+    fetch(requestUrl)
+    .then(function(response) {
+        return response.json()
+    })
+    .then(function(data) {
+        console.log(data)
+        // for (var i = ; i < data.list.length; i + 8) {
+        //     console.log(data.list[i])
+        // }
+    })
+}
+getForecastWeatherData();
+// getCurrentWeatherData();
