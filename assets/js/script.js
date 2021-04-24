@@ -18,6 +18,7 @@ function populateCurrentWeatherData(weatherData) {
   mainTempSpan.text(Math.round(weatherData.main.temp));
   mainHighTempSpan.text(Math.round(weatherData.main.temp_max));
   mainLowTempSpan.text(Math.round(weatherData.main.temp_min));
+  
 }
 
 function populateForecastWeatherData(forecastArr) {
@@ -25,9 +26,12 @@ function populateForecastWeatherData(forecastArr) {
         var highTemp = Math.round(forecastArr[i].main.temp_max)
         var lowTemp = Math.round(forecastArr[i].main.temp_min)
         var condition = forecastArr[i].weather[0].description
+        var date = dateFns.parse(forecastArr[i].dt_txt, "yyyy-MM-dd HH:mm:ss")
+        var day = dateFns.format(date, "dddd")
         $(".day").eq(i).children("#forecast-condition").text(condition)
         $(".day").eq(i).children(".forecast-high-low").children("#forecast-high").text(highTemp)
         $(".day").eq(i).children(".forecast-high-low").children("#forecast-low").text(lowTemp)
+        $(".day").eq(i).children("#forecast-day").text(day)        
     }
 }
 
@@ -54,10 +58,9 @@ function getForecastWeatherData() {
         var forecastArr = []
         for (var i = 3; i < data.list.length; i += 7) {
             forecastArr.push(data.list[i])
-            console.log(data.list[i])
         }
         populateForecastWeatherData(forecastArr);
     })
 }
 getForecastWeatherData();
-// getCurrentWeatherData();
+getCurrentWeatherData();
