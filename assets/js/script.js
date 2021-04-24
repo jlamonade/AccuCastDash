@@ -8,6 +8,7 @@ var forecastConditionSpan = $("#forecast-condition")
 var forecastHighTempSpan = $("forecast-high")
 var forecastLowTempSpan = $("forecast.low")
 var forecastDiv = $(".forecast")
+var searchButton = $(".btn")
 
 var cityName = "new+york"
 var apiKey = "5522e24e3f2cbcf4ca631dd68ebac697"
@@ -61,5 +62,15 @@ function getForecastWeatherData() {
         populateForecastWeatherData(forecastArr);
     })
 }
+
+function handleSearch(event) {
+    event.preventDefault();
+    cityName = $(event.target).prev().val().split(" ").join("+");
+    getForecastWeatherData();
+    getCurrentWeatherData();
+}
+
+$(".btn").click(handleSearch)
+
 // getForecastWeatherData();
 // getCurrentWeatherData();
