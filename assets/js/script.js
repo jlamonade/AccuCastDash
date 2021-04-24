@@ -7,6 +7,7 @@ var forecastDaySpan = $("#forecast-day")
 var forecastConditionSpan = $("#forecast-condition")
 var forecastHighTempSpan = $("forecast-high")
 var forecastLowTempSpan = $("forecast.low")
+var forecastDiv = $(".forecast")
 
 var cityName = "new+york"
 var apiKey = "5522e24e3f2cbcf4ca631dd68ebac697"
@@ -20,9 +21,14 @@ function populateCurrentWeatherData(weatherData) {
 }
 
 function populateForecastWeatherData(forecastArr) {
-    forecastArr.foreach((dayData) => {
-        // dayData.
-    })
+    for (var i = 0; i < forecastArr.length; i++) {
+        var highTemp = Math.round(forecastArr[i].main.temp_max)
+        var lowTemp = Math.round(forecastArr[i].main.temp_min)
+        var condition = forecastArr[i].weather[0].description
+        $(".day").eq(i).children("#forecast-condition").text(condition)
+        $(".day").eq(i).children(".forecast-high-low").children("#forecast-high").text(highTemp)
+        $(".day").eq(i).children(".forecast-high-low").children("#forecast-low").text(lowTemp)
+    }
 }
 
 function getCurrentWeatherData() {
@@ -50,7 +56,7 @@ function getForecastWeatherData() {
             forecastArr.push(data.list[i])
             console.log(data.list[i])
         }
-        
+        populateForecastWeatherData(forecastArr);
     })
 }
 getForecastWeatherData();
