@@ -5,9 +5,7 @@ var mainHighTempSpan = $("#main-high-temp");
 var mainLowTempSpan = $("#main-low-temp");
 var forecastDaySpan = $("#forecast-day")
 var forecastConditionSpan = $("#forecast-condition")
-var forecastHighTempSpan = $("forecast-high")
-var forecastLowTempSpan = $("forecast.low")
-var forecastDiv = $(".forecast")
+var forecastTempDiv = $(".forecast-temp")
 var searchButton = $(".btn")
 
 var cityName = "new+york"
@@ -23,14 +21,12 @@ function populateCurrentWeatherData(weatherData) {
 
 function populateForecastWeatherData(forecastArr) {
     for (var i = 0; i < forecastArr.length; i++) {
-        var highTemp = Math.round(forecastArr[i].main.temp_max)
-        var lowTemp = Math.round(forecastArr[i].main.temp_min)
+        var temp = Math.round(forecastArr[i].main.temp)
         var condition = forecastArr[i].weather[0].description
         var date = dateFns.parse(forecastArr[i].dt_txt, "yyyy-MM-dd HH:mm:ss")
         var day = dateFns.format(date, "dddd")
         $(".day").eq(i).children("#forecast-condition").text(condition)
-        $(".day").eq(i).children(".forecast-high-low").children("#forecast-high").text(highTemp)
-        $(".day").eq(i).children(".forecast-high-low").children("#forecast-low").text(lowTemp)
+        $(".day").eq(i).children(".forecast-temp").text(temp)
         $(".day").eq(i).children("#forecast-day").text(day)        
     }
 }
