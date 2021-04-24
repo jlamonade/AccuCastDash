@@ -35,10 +35,10 @@ function getForecastWeatherData() {
         return response.json()
     })
     .then(function(data) {
-        console.log(data)
-        // for (var i = ; i < data.list.length; i + 8) {
-        //     console.log(data.list[i])
-        // }
+        // console.log(data)
+        for (var i = 3; i < data.list.length; i += 7) {
+            console.log(data.list[i])
+        }
     })
 }
 getForecastWeatherData();
