@@ -1,3 +1,4 @@
+var currentDateDiv = $(".current-date");
 var mainLocationEl = $(".main-location");
 var mainConditionEl = $(".main-condition");
 var mainTempSpan = $("#main-temp");
@@ -51,6 +52,7 @@ function callFromOneCallApi(cityLat, cityLon, city) {
 }
 
 function populateCurrentWeatherData(weatherData, city) {
+	currentDateDiv.text(moment().format("LL"))
   mainLocationEl.text(city.split("+").join(" "));
   mainConditionEl.empty();
   mainConditionEl.append(
@@ -59,22 +61,29 @@ function populateCurrentWeatherData(weatherData, city) {
   mainTempSpan.text(Math.round(weatherData.current.temp));
   mainHumidityTd.text(weatherData.current.humidity + "%");
   mainWindTd.text(Math.round(weatherData.current.wind_speed) + " mph");
-  mainUvSpan.text(weatherData.current.uvi).css("background", chooseUvIndexColor(weatherData.current.uvi));
+  mainUvSpan
+    .text(weatherData.current.uvi)
+    .css("background", chooseUvIndexColor(weatherData.current.uvi));
 }
 
 function populateForecastWeatherData(forecastArr) {
   for (var i = 0; i < 5; i++) {
     var maxTemp = Math.round(forecastArr[i + 1].temp.max);
     var minTemp = Math.round(forecastArr[i + 1].temp.min);
+    var humidity = forecastArr[i + 1].humidity;
+    var wind = forecastArr[i + 1].wind_speed;
     $(".forecast-condition").eq(i).empty();
     var condition = chooseWeatherConditionIcon(
       forecastArr[i + 1].weather[0].icon,
       "forecast"
     );
-    var date = moment.unix(forecastArr[i + 1].dt).format("dddd");
+    var date = moment.unix(forecastArr[i + 1].dt).format("dddd, MMMM Do");
     console.log(date);
     $(".forecast-condition").eq(i).append(condition);
-    $(".forecast-temp").eq(i).text(maxTemp);
+    $(".forecast-high-temp").eq(i).text(maxTemp);
+    $(".forecast-low-temp").eq(i).text(minTemp);
+    $(".forecast-humidity-span").eq(i).text(humidity);
+    $(".forecast-wind-span").eq(i).text(wind);
     $(".forecast-day").eq(i).text(date);
   }
 }

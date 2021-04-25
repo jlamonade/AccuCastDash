@@ -70,6 +70,7 @@
       </header>
       <div class="row align-items-center m-0 h-75">
         <div class="current-condition col-sm-12 col-md-6 text-center p-0 mb-3">
+					<div class="current-date"></div>
           <div class="main-location mb-4"></div>
           <div class="main-condition"></div>
           <div class="main-temp"><span id="main-temp"></span></div>
@@ -78,56 +79,103 @@
               <tr>
                 <td>Humidity</td>
                 <td>Wind Speed</td>
-								<td>UV Index</td>
+                <td>UV Index</td>
               </tr>
               <tr>
                 <td id="main-humidity-td"></td>
                 <td id="main-wind-td"></td>
-								<td>
+                <td>
                   <span class="badge rounded-pill" id="main-uv-span"></span>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
+
         <div class="forecast col-sm-12 col-md-6 text-center">
-          <div
-            class="day row d-flex justify-content-between align-items-center my-2"
-          >
+          <div class="day row d-flex justify-content-between align-items-center my-3">
             <span class="col-4 forecast-day"></span>
             <span class="col-4 forecast-condition"></span>
-            <div class="forecast-temp col-4">
-              <span id="forecast-high-temp"></span> / 
-              <span id="forecast-low-temp"></span>
+            <div class="forecast-data col-4">
+              <div class="forecast-temp">
+                <span class="forecast-high-temp"></span> /
+                <span class="forecast-low-temp"></span>
+              </div>
+              <div class="forecast-humidity">
+                Humidity: <span class="forecast-humidity-span"></span>%
+              </div>
+              <div class="forecast-wind">
+                Wind: <span class="forecast-wind-span"></span> mph
+              </div>
             </div>
           </div>
-          <div
-            class="day row d-flex justify-content-between align-items-center my-2"
-          >
+
+          <div class="day row d-flex justify-content-between align-items-center my-3">
             <span class="col-4 forecast-day"></span>
             <span class="col-4 forecast-condition"></span>
-            <span class="forecast-temp col-4"></span>
+						<div class="forecast-data col-4">
+              <div class="forecast-temp">
+                <span class="forecast-high-temp"></span> /
+                <span class="forecast-low-temp"></span>
+              </div>
+              <div class="forecast-humidity">
+                Humidity: <span class="forecast-humidity-span"></span>%
+              </div>
+              <div class="forecast-wind">
+                Wind: <span class="forecast-wind-span"></span> mph
+              </div>
+            </div>
           </div>
-          <div
-            class="day row d-flex justify-content-between align-items-center my-2"
-          >
+
+          <div class="day row d-flex justify-content-between align-items-center my-3">
             <span class="col-4 forecast-day"></span>
             <span class="col-4 forecast-condition"></span>
-            <span class="forecast-temp col-4"></span>
+						<div class="forecast-data col-4">
+              <div class="forecast-temp">
+                <span class="forecast-high-temp"></span> /
+                <span class="forecast-low-temp"></span>
+              </div>
+              <div class="forecast-humidity">
+                Humidity: <span class="forecast-humidity-span"></span>%
+              </div>
+              <div class="forecast-wind">
+                Wind: <span class="forecast-wind-span"></span> mph
+              </div>
+            </div>
           </div>
-          <div
-            class="day row d-flex justify-content-between align-items-center my-2"
-          >
+
+          <div class="day row d-flex justify-content-between align-items-center my-3">
             <span class="col-4 forecast-day"></span>
             <span class="col-4 forecast-condition"></span>
-            <span class="forecast-temp col-4"></span>
+						<div class="forecast-data col-4">
+              <div class="forecast-temp">
+                <span class="forecast-high-temp"></span> /
+                <span class="forecast-low-temp"></span>
+              </div>
+              <div class="forecast-humidity">
+                Humidity: <span class="forecast-humidity-span"></span>%
+              </div>
+              <div class="forecast-wind">
+                Wind: <span class="forecast-wind-span"></span> mph
+              </div>
+            </div>
           </div>
-          <div
-            class="day row d-flex justify-content-between align-items-center my-2"
-          >
+
+          <div class="day row d-flex justify-content-between align-items-center my-3">
             <span class="col-4 forecast-day"></span>
             <span class="col-4 forecast-condition"></span>
-            <span class="forecast-temp col-4"></span>
+						<div class="forecast-data col-4">
+              <div class="forecast-temp">
+                <span class="forecast-high-temp"></span> /
+                <span class="forecast-low-temp"></span>
+              </div>
+              <div class="forecast-humidity">
+                Humidity: <span class="forecast-humidity-span"></span>%
+              </div>
+              <div class="forecast-wind">
+                Wind: <span class="forecast-wind-span"></span> mph
+              </div>
+            </div>
           </div>
         </div>
       </div>

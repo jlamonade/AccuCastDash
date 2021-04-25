@@ -82,6 +82,11 @@ body {
 .table {
     font-size: .8rem;
 }
+
+.forecast-data {
+    font-size: .8rem;
+}
+
 #main-uv-span {
     color: black;
     font-size: .75rem;
