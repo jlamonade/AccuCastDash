@@ -54,7 +54,8 @@ function getCurrentWeatherData(city) {
       return response.json();
     })
     .then(function (data) {
-      if (data) { // do this only if the searched city returns valid data
+      if (data.main.temp) {
+        // do this only if the searched city returns valid data
         populateCurrentWeatherData(data);
         addSearchToHistory(); // so that it doesn't pollute localStorage with bad searches
       }
@@ -69,21 +70,24 @@ function getForecastWeatherData(cityName) {
       return response.json();
     })
     .then(function (data) {
-      var forecastArr = [];
-      for (var i = 7; i < data.list.length; i += 8) {
-        forecastArr.push(data.list[i]);
+        console.log(data)
+      if (data.list) {
+        var forecastArr = [];
+        for (var i = 7; i < data.list.length; i += 8) {
+          forecastArr.push(data.list[i]);
+        }
+        populateForecastWeatherData(forecastArr);
       }
-      populateForecastWeatherData(forecastArr);
     });
 }
 
 function handleSearch(event) {
   event.preventDefault();
   const city = $(event.target).prev().val().split(" ").join("+");
-  cityName = city;
   getForecastWeatherData(city);
   getCurrentWeatherData(city);
   $(event.target).prev().val("");
+  cityName = city;
 }
 
 function addSearchToHistory() {
