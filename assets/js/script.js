@@ -10,6 +10,9 @@ var searchButton = $(".btn");
 
 var cityName = "new+york";
 var apiKey = "5522e24e3f2cbcf4ca631dd68ebac697";
+var searchHistory = localStorage.getItem("weather-search-history")
+  ? JSON.parse(localStorage.getItem("weather-search-history"))
+  : [];
 
 function populateCurrentWeatherData(weatherData) {
   mainLocationEl.text(weatherData.name);
@@ -39,7 +42,11 @@ function getCurrentWeatherData() {
       return response.json();
     })
     .then(function (data) {
-      populateCurrentWeatherData(data);
+        if (data) {
+            populateCurrentWeatherData(data);
+            addSearchToHistory();
+        }
+      
     });
 }
 
@@ -64,6 +71,15 @@ function handleSearch(event) {
   cityName = $(event.target).prev().val().split(" ").join("+");
   getForecastWeatherData();
   getCurrentWeatherData();
+  $(event.target).prev().val("")
+}
+
+function addSearchToHistory() {
+  if (!searchHistory.includes(cityName)) {
+    searchHistory.push(cityName);
+    cityName = null;
+  }
+  localStorage.setItem("weather-search-history", JSON.stringify(searchHistory));
 }
 
 $(".btn").click(handleSearch);
