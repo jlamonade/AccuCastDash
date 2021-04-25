@@ -34,23 +34,22 @@ function populateForecastWeatherData(forecastArr) {
   }
 }
 
-function getCurrentWeatherData() {
-  var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`;
+function getCurrentWeatherData(city) {
+  var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-        if (data) {
-            populateCurrentWeatherData(data);
-            addSearchToHistory();
-        }
-      
+      if (data) {
+        populateCurrentWeatherData(data);
+        addSearchToHistory();
+      }
     });
 }
 
-function getForecastWeatherData() {
+function getForecastWeatherData(cityName) {
   var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`;
 
   fetch(requestUrl)
@@ -68,10 +67,11 @@ function getForecastWeatherData() {
 
 function handleSearch(event) {
   event.preventDefault();
-  cityName = $(event.target).prev().val().split(" ").join("+");
-  getForecastWeatherData();
-  getCurrentWeatherData();
-  $(event.target).prev().val("")
+  var city = $(event.target).prev().val().split(" ").join("+");
+  cityName = city;
+  getForecastWeatherData(city);
+  getCurrentWeatherData(city);
+  $(event.target).prev().val("");
 }
 
 function addSearchToHistory() {
@@ -80,9 +80,27 @@ function addSearchToHistory() {
     cityName = null;
   }
   localStorage.setItem("weather-search-history", JSON.stringify(searchHistory));
+  populateHistoryDropdown();
+}
+
+function populateHistoryDropdown() {
+  $(".dropdown-menu").empty();
+  // CREATE
+  for (const item of searchHistory) {
+    // BUILD
+    var newLiEl = $("<li class='dropdown-item'>")
+      .text(item.split("+").join(" "))
+      .click(function () {
+        getCurrentWeatherData(item)
+        getForecastWeatherData(item)
+      })
+      console.log(newLiEl)
+      $(".dropdown-menu").append(newLiEl);
+  }
 }
 
 $(".btn").click(handleSearch);
 
+populateHistoryDropdown();
 // getForecastWeatherData();
 // getCurrentWeatherData();

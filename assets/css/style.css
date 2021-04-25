@@ -1,3 +1,18 @@
 /* * {
     border: 1px red solid;
 } */
+
+.navbar {
+    color: white;
+}
+
+body {
+    background: #4AC6F7;
+    color: white;
+    text-shadow: 1px 1px 2px gray;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
