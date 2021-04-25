@@ -73,25 +73,19 @@
           <div class="main-location mb-4"></div>
           <div class="main-condition"></div>
           <div class="main-temp"><span id="main-temp"></span></div>
-          <div class="main-high-low text-center">
-            H: <span id="main-high-temp"></span> L:
-            <span id="main-low-temp"></span>
-          </div>
           <table class="table table-borderless table-sm p-0 text-white">
             <tbody>
               <tr>
                 <td>Humidity</td>
                 <td>Wind Speed</td>
+								<td>UV Index</td>
               </tr>
               <tr>
                 <td id="main-humidity-td"></td>
                 <td id="main-wind-td"></td>
-              </tr>
-              <tr>
-                <td colspan="2">UV Index</td>
-              </tr>
-              <tr>
-                <td colspan="2" id="main-uv-td"></td>
+								<td>
+                  <span class="badge rounded-pill" id="main-uv-span"></span>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -102,7 +96,10 @@
           >
             <span class="col-4 forecast-day"></span>
             <span class="col-4 forecast-condition"></span>
-            <span class="forecast-temp col-4"></span>
+            <div class="forecast-temp col-4">
+              <span id="forecast-high-temp"></span> / 
+              <span id="forecast-low-temp"></span>
+            </div>
           </div>
           <div
             class="day row d-flex justify-content-between align-items-center my-2"

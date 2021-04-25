@@ -9,16 +9,23 @@
 
 .navbar-brand {
     opacity: 75%;
+    transition: 0.2s ease;
+    cursor: default;
+}
+
+.navbar-brand:hover {
+    opacity: 100%;
 }
 
 .navbar-toggler {
     border: none;
+    transition: 0.2s ease;
 }
 
 .btn {
     color: white;
     transition: 0.2s ease;
-    opacity: 70%;
+    opacity: 75%;
 }
 
 .dropdown-menu {
@@ -71,4 +78,12 @@ body {
 
 .forecast-condition-icon {
     width: 50px;
+}
+.table {
+    font-size: .8rem;
+}
+#main-uv-span {
+    color: black;
+    font-size: .75rem;
+    font-weight: 600;
 }

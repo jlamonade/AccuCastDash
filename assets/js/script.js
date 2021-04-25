@@ -1,11 +1,9 @@
 var mainLocationEl = $(".main-location");
 var mainConditionEl = $(".main-condition");
 var mainTempSpan = $("#main-temp");
-var mainHighTempSpan = $("#main-high-temp");
-var mainLowTempSpan = $("#main-low-temp");
 var mainHumidityTd = $("#main-humidity-td");
 var mainWindTd = $("#main-wind-td");
-var mainUvTd = $("#main-uv-td");
+var mainUvSpan = $("#main-uv-span");
 var forecastDaySpan = $(".forecast-day");
 var forecastConditionSpan = $(".forecast-condition");
 var forecastTempDiv = $(".forecast-temp");
@@ -61,7 +59,7 @@ function populateCurrentWeatherData(weatherData, city) {
   mainTempSpan.text(Math.round(weatherData.current.temp));
   mainHumidityTd.text(weatherData.current.humidity + "%");
   mainWindTd.text(Math.round(weatherData.current.wind_speed) + " mph");
-  mainUvTd.text(weatherData.current.uvi).css("background", chooseUvIndexColor(weatherData.current.uvi));
+  mainUvSpan.text(weatherData.current.uvi).css("background", chooseUvIndexColor(weatherData.current.uvi));
 }
 
 function populateForecastWeatherData(forecastArr) {
@@ -112,7 +110,7 @@ function populateHistoryDropdown() {
 
 function chooseWeatherConditionIcon(condition, area) {
   var imgEl = $(
-    `<img class="${area}-condition-icon" src="./assets/images/${condition}.png">`
+    `<img class="${area}-condition-icon" src="./assets/images/${condition}.png" alt="weather condition graphic">`
   );
   return imgEl;
 }
