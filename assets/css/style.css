@@ -1,15 +1,46 @@
 /* * {
     border: 1px red solid;
 } */
-
 .navbar {
-    color: white;
+    background: #4AC6F7;
+}
+
+.navbar-brand {
+    opacity: 75%;
+}
+
+.navbar-toggler {
+    border: none;
 }
 
 body {
     background: #4AC6F7;
     color: white;
-    text-shadow: 1px 1px 2px gray;
+}
+
+.btn {
+    color: white;
+    transition: 0.2s ease;
+    opacity: 70%;
+}
+
+.dropdown-menu {
+    background: #4AC6F7;
+}
+
+.btn:hover {
+    opacity: 100%;
+    color: white;
+}
+
+.form-control,
+.form-control:focus {
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    opacity: 75%;
+    font-style: italic;
 }
 
 .dropdown-item {

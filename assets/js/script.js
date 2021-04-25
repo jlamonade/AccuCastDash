@@ -67,7 +67,7 @@ function getForecastWeatherData(cityName) {
 
 function handleSearch(event) {
   event.preventDefault();
-  var city = $(event.target).prev().val().split(" ").join("+");
+  const city = $(event.target).prev().val().split(" ").join("+");
   cityName = city;
   getForecastWeatherData(city);
   getCurrentWeatherData(city);
