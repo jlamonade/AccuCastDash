@@ -3,8 +3,8 @@ var mainConditionEl = $(".main-condition");
 var mainTempSpan = $("#main-temp");
 var mainHighTempSpan = $("#main-high-temp");
 var mainLowTempSpan = $("#main-low-temp");
-var forecastDaySpan = $("#forecast-day");
-var forecastConditionSpan = $("#forecast-condition");
+var forecastDaySpan = $(".forecast-day");
+var forecastConditionSpan = $(".forecast-condition");
 var forecastTempDiv = $(".forecast-temp");
 var searchButton = $(".btn");
 
@@ -16,27 +16,24 @@ var searchHistory = localStorage.getItem("weather-search-history")
 
 function populateCurrentWeatherData(weatherData) {
   mainLocationEl.text(weatherData.name);
-  mainConditionEl.append(chooseWeatherConditionIcon(weatherData.weather[0].main, "main"));
+  mainConditionEl.empty()
+  mainConditionEl.append(chooseWeatherConditionIcon(weatherData.weather[0].icon, "main"));
   mainTempSpan.text(Math.round(weatherData.main.temp));
   mainHighTempSpan.text(Math.round(weatherData.main.temp_max));
   mainLowTempSpan.text(Math.round(weatherData.main.temp_min));
   console.log(weatherData.weather[0].main)
 }
 
-function chooseWeatherConditionIcon (condition, area) {
-    var imgEl = $(`<img class="${area}-condition-icon" src="./assets/images/${condition}.png">`)
-    return imgEl
-}
-
 function populateForecastWeatherData(forecastArr) {
   for (var i = 0; i < forecastArr.length; i++) {
     var temp = Math.round(forecastArr[i].main.temp);
-    var condition = chooseWeatherConditionIcon(forecastArr[i].weather[0].main, "forecast");
+    $(".forecast-condition").eq(i).empty()
+    var condition = chooseWeatherConditionIcon(forecastArr[i].weather[0].icon, "forecast");
     var date = dateFns.parse(forecastArr[i].dt_txt, "yyyy-MM-dd HH:mm:ss");
     var day = dateFns.format(date, "dddd");
-    $(".day").eq(i).children("#forecast-condition").append(condition);
-    $(".day").eq(i).children(".forecast-temp").text(temp);
-    $(".day").eq(i).children("#forecast-day").text(day);
+    $(".forecast-condition").eq(i).append(condition);
+    $(".forecast-temp").eq(i).text(temp);
+    $(".forecast-day").eq(i).text(day);
   }
 }
 
@@ -64,7 +61,7 @@ function getForecastWeatherData(cityName) {
     })
     .then(function (data) {
       var forecastArr = [];
-      for (var i = 3; i < data.list.length; i += 7) {
+      for (var i = 7; i < data.list.length; i += 8) {
         forecastArr.push(data.list[i]);
       }
       populateForecastWeatherData(forecastArr);
@@ -105,8 +102,17 @@ function populateHistoryDropdown() {
   }
 }
 
+function chooseWeatherConditionIcon (condition, area) {
+    var imgEl = $(`<img class="${area}-condition-icon" src="./assets/images/${condition}.png">`)
+    return imgEl
+}
+
+function chooseBackgroundColor () {
+
+}
+
 $(".btn").click(handleSearch);
 
 populateHistoryDropdown();
-// getForecastWeatherData();
-// getCurrentWeatherData();
+getForecastWeatherData(cityName);
+getCurrentWeatherData(cityName);

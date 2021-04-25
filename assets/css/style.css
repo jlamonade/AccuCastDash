@@ -41,8 +41,8 @@
     border: none;
     outline: none;
     color: white;
-    opacity: 75%;
     font-style: italic;
+    opacity: 90%;
 }
 
 .dropdown-item {
