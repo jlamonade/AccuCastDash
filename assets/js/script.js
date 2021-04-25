@@ -42,7 +42,6 @@ function callFromOneCallApi(cityLat, cityLon, city) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       if (data) {
         populateCurrentWeatherData(data, city);
         populateForecastWeatherData(data.daily);
@@ -78,7 +77,6 @@ function populateForecastWeatherData(forecastArr) {
       "forecast"
     );
     var date = moment.unix(forecastArr[i + 1].dt).format("dddd, MMMM Do");
-    console.log(date);
     $(".forecast-condition").eq(i).append(condition);
     $(".forecast-high-temp").eq(i).text(maxTemp);
     $(".forecast-low-temp").eq(i).text(minTemp);
