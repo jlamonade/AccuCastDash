@@ -1,8 +1,10 @@
-/* * {
-    border: 1px red solid;
-} */
+* {
+    font-family: 'Montserrat', sans-serif;;
+}
+
+/* navbar selectors */
 .navbar {
-    background: #4AC6F7;
+    background: none;
 }
 
 .navbar-brand {
@@ -13,11 +15,6 @@
     border: none;
 }
 
-body {
-    background: #4AC6F7;
-    color: white;
-}
-
 .btn {
     color: white;
     transition: 0.2s ease;
@@ -25,7 +22,12 @@ body {
 }
 
 .dropdown-menu {
-    background: #4AC6F7;
+    background: rgba(0,0,0,.2);
+    border: none;
+}
+
+.dropdown-item {
+    color: white;
 }
 
 .btn:hover {
@@ -47,3 +49,24 @@ body {
     cursor: pointer;
 }
 
+/* body selectors */
+body {
+    background: linear-gradient(rgba(0,174,245,1) 27%, rgba(0,212,255,1) 100%);
+    color: white;
+}
+
+.main-location {
+    font-size: 2rem;
+}
+
+.main-temp {
+    font-size: 4rem;
+}
+
+.main-condition-icon {
+    width: 100px;
+}
+
+.forecast-condition-icon {
+    width: 50px;
+}

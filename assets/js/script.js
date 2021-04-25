@@ -16,19 +16,25 @@ var searchHistory = localStorage.getItem("weather-search-history")
 
 function populateCurrentWeatherData(weatherData) {
   mainLocationEl.text(weatherData.name);
-  mainConditionEl.text(weatherData.weather[0].description);
+  mainConditionEl.append(chooseWeatherConditionIcon(weatherData.weather[0].main, "main"));
   mainTempSpan.text(Math.round(weatherData.main.temp));
   mainHighTempSpan.text(Math.round(weatherData.main.temp_max));
   mainLowTempSpan.text(Math.round(weatherData.main.temp_min));
+  console.log(weatherData.weather[0].main)
+}
+
+function chooseWeatherConditionIcon (condition, area) {
+    var imgEl = $(`<img class="${area}-condition-icon" src="./assets/images/${condition}.png">`)
+    return imgEl
 }
 
 function populateForecastWeatherData(forecastArr) {
   for (var i = 0; i < forecastArr.length; i++) {
     var temp = Math.round(forecastArr[i].main.temp);
-    var condition = forecastArr[i].weather[0].description;
+    var condition = chooseWeatherConditionIcon(forecastArr[i].weather[0].main, "forecast");
     var date = dateFns.parse(forecastArr[i].dt_txt, "yyyy-MM-dd HH:mm:ss");
     var day = dateFns.format(date, "dddd");
-    $(".day").eq(i).children("#forecast-condition").text(condition);
+    $(".day").eq(i).children("#forecast-condition").append(condition);
     $(".day").eq(i).children(".forecast-temp").text(temp);
     $(".day").eq(i).children("#forecast-day").text(day);
   }
