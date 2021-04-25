@@ -8,27 +8,36 @@ var forecastConditionSpan = $(".forecast-condition");
 var forecastTempDiv = $(".forecast-temp");
 var searchButton = $(".btn");
 
-var cityName = "new+york";
 var apiKey = "5522e24e3f2cbcf4ca631dd68ebac697";
-var searchHistory = localStorage.getItem("weather-search-history")
+var searchHistory = localStorage.getItem("weather-search-history") // gets localStorage item if it exists
   ? JSON.parse(localStorage.getItem("weather-search-history"))
   : [];
 
+var cityName = // gets last searched city if searchHistory is not empty
+  searchHistory.length > 0
+    ? searchHistory[searchHistory.length - 1]
+    : "new+york";
+
 function populateCurrentWeatherData(weatherData) {
   mainLocationEl.text(weatherData.name);
-  mainConditionEl.empty()
-  mainConditionEl.append(chooseWeatherConditionIcon(weatherData.weather[0].icon, "main"));
+  mainConditionEl.empty();
+  mainConditionEl.append(
+    chooseWeatherConditionIcon(weatherData.weather[0].icon, "main")
+  );
   mainTempSpan.text(Math.round(weatherData.main.temp));
   mainHighTempSpan.text(Math.round(weatherData.main.temp_max));
   mainLowTempSpan.text(Math.round(weatherData.main.temp_min));
-  console.log(weatherData.weather[0].main)
+  console.log(weatherData.weather[0].main);
 }
 
 function populateForecastWeatherData(forecastArr) {
   for (var i = 0; i < forecastArr.length; i++) {
     var temp = Math.round(forecastArr[i].main.temp);
-    $(".forecast-condition").eq(i).empty()
-    var condition = chooseWeatherConditionIcon(forecastArr[i].weather[0].icon, "forecast");
+    $(".forecast-condition").eq(i).empty();
+    var condition = chooseWeatherConditionIcon(
+      forecastArr[i].weather[0].icon,
+      "forecast"
+    );
     var date = dateFns.parse(forecastArr[i].dt_txt, "yyyy-MM-dd HH:mm:ss");
     var day = dateFns.format(date, "dddd");
     $(".forecast-condition").eq(i).append(condition);
@@ -45,9 +54,9 @@ function getCurrentWeatherData(city) {
       return response.json();
     })
     .then(function (data) {
-      if (data) {
+      if (data) { // do this only if the searched city returns valid data
         populateCurrentWeatherData(data);
-        addSearchToHistory();
+        addSearchToHistory(); // so that it doesn't pollute localStorage with bad searches
       }
     });
 }
@@ -88,28 +97,25 @@ function addSearchToHistory() {
 
 function populateHistoryDropdown() {
   $(".dropdown-menu").empty();
-  // CREATE
   for (const item of searchHistory) {
-    // BUILD
     var newLiEl = $("<li class='dropdown-item'>")
       .text(item.split("+").join(" "))
       .click(function () {
-        getCurrentWeatherData(item)
-        getForecastWeatherData(item)
-      })
-      console.log(newLiEl)
-      $(".dropdown-menu").append(newLiEl);
+        getCurrentWeatherData(item);
+        getForecastWeatherData(item);
+      });
+    $(".dropdown-menu").append(newLiEl);
   }
 }
 
-function chooseWeatherConditionIcon (condition, area) {
-    var imgEl = $(`<img class="${area}-condition-icon" src="./assets/images/${condition}.png">`)
-    return imgEl
+function chooseWeatherConditionIcon(condition, area) {
+  var imgEl = $(
+    `<img class="${area}-condition-icon" src="./assets/images/${condition}.png">`
+  );
+  return imgEl;
 }
 
-function chooseBackgroundColor () {
-
-}
+function chooseBackgroundColor() {}
 
 $(".btn").click(handleSearch);
 
