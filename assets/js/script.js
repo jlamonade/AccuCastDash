@@ -28,7 +28,7 @@ function getCoordinatesFromCityNameThenCallApi(city) {
 
 	the data validation helps filter out erroneous input, anything that isn't the name of a city
 	*/
-  var requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+  var requestUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
