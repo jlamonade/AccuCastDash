@@ -3,6 +3,9 @@ var mainConditionEl = $(".main-condition");
 var mainTempSpan = $("#main-temp");
 var mainHighTempSpan = $("#main-high-temp");
 var mainLowTempSpan = $("#main-low-temp");
+var mainHumiditySpan = $("#main-humidity-span")
+var mainWindSpan = $("#main-wind-span")
+var mainUvSpan = $("#main-uv-span")
 var forecastDaySpan = $(".forecast-day");
 var forecastConditionSpan = $(".forecast-condition");
 var forecastTempDiv = $(".forecast-temp");
@@ -27,6 +30,9 @@ function populateCurrentWeatherData(weatherData) {
   mainTempSpan.text(Math.round(weatherData.main.temp));
   mainHighTempSpan.text(Math.round(weatherData.main.temp_max));
   mainLowTempSpan.text(Math.round(weatherData.main.temp_min));
+  mainHumiditySpan.text(weatherData.main.humidity + "%")
+  mainWindSpan.text(Math.round(weatherData.wind.speed) + " mph")
+
   console.log(weatherData.weather[0].main);
 }
 
@@ -124,5 +130,5 @@ function chooseBackgroundColor() {}
 $(".btn").click(handleSearch);
 
 populateHistoryDropdown();
-getForecastWeatherData(cityName);
-getCurrentWeatherData(cityName);
+// getForecastWeatherData(cityName);
+// getCurrentWeatherData(cityName);

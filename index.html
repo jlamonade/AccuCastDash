@@ -10,101 +10,134 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Weather Panel</title>
   </head>
   <body>
     <div class="content vh-100 m-0 p-0">
-        <header>
-            <nav class="navbar sticky-top navbar-expand-md navbar-dark">
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">AccuCastDash</a>
-                <button
-                  class="navbar-toggler"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav me-auto">
-                    <li class="nav-item dropdown my-1">
-                      <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="navbarDropdown"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        History
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="dropdown-item">New York</li>
-                        <li class="dropdown-item">London</li>
-                        <li class="dropdown-item">Paris</li>
-                      </ul>
-                    </li>
+      <header>
+        <nav class="navbar sticky-top navbar-expand-md navbar-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">AccuCastDash</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown my-1">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    History
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li class="dropdown-item">New York</li>
+                    <li class="dropdown-item">London</li>
+                    <li class="dropdown-item">Paris</li>
                   </ul>
-                  <form class="d-flex">
-                    <input
-                      class="form-control me-2"
-                      type="search"
-                      placeholder="City Name"
-                      aria-label="Search"
-                    />
-                    <button class="btn" type="submit">
-                      Search
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </nav>
-          </header>
-          <div class="row align-items-center m-0 h-75">
-            <div class="current-condition col-sm-12 col-md-6 text-center p-0 mb-3">
-              <div class="main-location mb-4"></div>
-              <div class="main-condition"></div>
-              <div class="main-temp"><span id="main-temp"></span></div>
-              <div class="main-high-low text-center">
-                H: <span id="main-high-temp"></span>
-                L: <span id="main-low-temp"></span>
-              </div>
-            </div>
-            <div class="forecast col-sm-12 col-md-6 text-center">
-              <div class="day row d-flex justify-content-between align-items-center my-2">
-                <span class="col-4 forecast-day"></span>
-                <span class="col-4 forecast-condition"></span>
-                <span class="forecast-temp col-4"></span>
-              </div>
-              <div class="day row d-flex justify-content-between align-items-center my-2">
-                <span class="col-4 forecast-day"></span>
-                <span class="col-4 forecast-condition"></span>
-                <span class="forecast-temp col-4"></span>
-              </div>
-              <div class="day row d-flex justify-content-between align-items-center my-2">
-                <span class="col-4 forecast-day"></span>
-                <span class="col-4 forecast-condition" id="forecast-condition"></span>
-                <span class="forecast-temp col-4"></span>
-              </div>
-              <div class="day row d-flex justify-content-between align-items-center my-2">
-                <span class="col-4 forecast-day"></span>
-                <span class="col-4 forecast-condition"></span>
-                <span class="forecast-temp col-4"></span>
-              </div>
-              <div class="day row d-flex justify-content-between align-items-center my-2">
-                <span class="col-4 forecast-day"></span>
-                <span class="col-4 forecast-condition"></span>
-                <span class="forecast-temp col-4"></span>
-              </div>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="City Name"
+                  aria-label="Search"
+                />
+                <button class="btn" type="submit">Search</button>
+              </form>
             </div>
           </div>
+        </nav>
+      </header>
+      <div class="row align-items-center m-0 h-75">
+        <div class="current-condition col-sm-12 col-md-6 text-center p-0 mb-3">
+          <div class="main-location mb-4"></div>
+          <div class="main-condition"></div>
+          <div class="main-temp"><span id="main-temp"></span></div>
+          <div class="main-high-low text-center">
+            H: <span id="main-high-temp"></span> L:
+            <span id="main-low-temp"></span>
+          </div>
+          <table class="table table-borderless table-sm p-0 text-white">
+              <tbody>
+                  <tr>
+                      <td>Humidity</td>
+                      <td>Wind Speed</td>
+                  </tr>
+                  <tr>
+                      <td id="main-humidity-span"></td>
+                      <td id="main-wind-span"></td>
+                  </tr>
+                  <tr>
+                      <td colspan="2">UV Index</td>
+                  </tr>
+                  <tr>
+                      <td colspan="2" id="main-uv-span"></td>
+                  </tr>
+              </tbody>
+          </table>
+          </table>
+        </div>
+        <div class="forecast col-sm-12 col-md-6 text-center">
+          <div
+            class="day row d-flex justify-content-between align-items-center my-2"
+          >
+            <span class="col-4 forecast-day"></span>
+            <span class="col-4 forecast-condition"></span>
+            <span class="forecast-temp col-4"></span>
+          </div>
+          <div
+            class="day row d-flex justify-content-between align-items-center my-2"
+          >
+            <span class="col-4 forecast-day"></span>
+            <span class="col-4 forecast-condition"></span>
+            <span class="forecast-temp col-4"></span>
+          </div>
+          <div
+            class="day row d-flex justify-content-between align-items-center my-2"
+          >
+            <span class="col-4 forecast-day"></span>
+            <span
+              class="col-4 forecast-condition"
+              id="forecast-condition"
+            ></span>
+            <span class="forecast-temp col-4"></span>
+          </div>
+          <div
+            class="day row d-flex justify-content-between align-items-center my-2"
+          >
+            <span class="col-4 forecast-day"></span>
+            <span class="col-4 forecast-condition"></span>
+            <span class="forecast-temp col-4"></span>
+          </div>
+          <div
+            class="day row d-flex justify-content-between align-items-center my-2"
+          >
+            <span class="col-4 forecast-day"></span>
+            <span class="col-4 forecast-condition"></span>
+            <span class="forecast-temp col-4"></span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script
