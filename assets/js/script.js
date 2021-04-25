@@ -54,7 +54,7 @@ function getCurrentWeatherData(city) {
       return response.json();
     })
     .then(function (data) {
-      if (data.main.temp) {
+      if (data.cod === 200) {
         // do this only if the searched city returns valid data
         populateCurrentWeatherData(data);
         addSearchToHistory(); // so that it doesn't pollute localStorage with bad searches
@@ -70,8 +70,8 @@ function getForecastWeatherData(cityName) {
       return response.json();
     })
     .then(function (data) {
-        console.log(data)
-      if (data.list) {
+      console.log(data);
+      if (data.cod === "200") {
         var forecastArr = [];
         for (var i = 7; i < data.list.length; i += 8) {
           forecastArr.push(data.list[i]);
