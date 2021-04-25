@@ -3,9 +3,9 @@ var mainConditionEl = $(".main-condition");
 var mainTempSpan = $("#main-temp");
 var mainHighTempSpan = $("#main-high-temp");
 var mainLowTempSpan = $("#main-low-temp");
-var mainHumiditySpan = $("#main-humidity-span")
-var mainWindSpan = $("#main-wind-span")
-var mainUvSpan = $("#main-uv-span")
+var mainHumidityTd = $("#main-humidity-td");
+var mainWindTd = $("#main-wind-td");
+var mainUvTd = $("#main-uv-td");
 var forecastDaySpan = $(".forecast-day");
 var forecastConditionSpan = $(".forecast-condition");
 var forecastTempDiv = $(".forecast-temp");
@@ -21,34 +21,58 @@ var cityName = // gets last searched city if searchHistory is not empty
     ? searchHistory[searchHistory.length - 1]
     : "new+york";
 
+function getCoordinatesFromCityNameThenCallApi(city) {
+  var requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var cityLat = data[0].lat;
+      var cityLon = data[0].lon;
+      callFromOneCallApi(cityLat, cityLon);
+    });
+}
+
+function callFromOneCallApi(cityLat, cityLon) {
+  var requestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=imperial`;
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      populateCurrentWeatherData(data);
+			populateForecastWeatherData(data.daily);
+			addSearchToHistory();
+    });
+}
+
 function populateCurrentWeatherData(weatherData) {
   mainLocationEl.text(weatherData.name);
   mainConditionEl.empty();
   mainConditionEl.append(
-    chooseWeatherConditionIcon(weatherData.weather[0].icon, "main")
+    chooseWeatherConditionIcon(weatherData.current.weather[0].icon, "main")
   );
-  mainTempSpan.text(Math.round(weatherData.main.temp));
-  mainHighTempSpan.text(Math.round(weatherData.main.temp_max));
-  mainLowTempSpan.text(Math.round(weatherData.main.temp_min));
-  mainHumiditySpan.text(weatherData.main.humidity + "%")
-  mainWindSpan.text(Math.round(weatherData.wind.speed) + " mph")
-
-  console.log(weatherData.weather[0].main);
+  mainTempSpan.text(Math.round(weatherData.current.temp));
+  mainHumidityTd.text(weatherData.current.humidity + "%");
+  mainWindTd.text(Math.round(weatherData.current.wind_speed) + " mph");
+	mainUvTd.text(weatherData.current.uvi)
 }
 
 function populateForecastWeatherData(forecastArr) {
-  for (var i = 0; i < forecastArr.length; i++) {
-    var temp = Math.round(forecastArr[i].main.temp);
+  for (var i = 0; i < 5; i++) {
+    var maxTemp = Math.round(forecastArr[i + 1].temp.max);
+		var minTemp = Math.round(forecastArr[i + 1].temp.min);
     $(".forecast-condition").eq(i).empty();
     var condition = chooseWeatherConditionIcon(
-      forecastArr[i].weather[0].icon,
+      forecastArr[i + 1].weather[0].icon,
       "forecast"
     );
-    var date = dateFns.parse(forecastArr[i].dt_txt, "yyyy-MM-dd HH:mm:ss");
-    var day = dateFns.format(date, "dddd");
+    var date = moment.unix(forecastArr[i + 1].dt).format("dddd");
+		console.log(date)
     $(".forecast-condition").eq(i).append(condition);
-    $(".forecast-temp").eq(i).text(temp);
-    $(".forecast-day").eq(i).text(day);
+    $(".forecast-temp").eq(i).text(maxTemp);
+    $(".forecast-day").eq(i).text(date);
   }
 }
 
@@ -91,7 +115,7 @@ function handleSearch(event) {
   event.preventDefault();
   const city = $(event.target).prev().val().split(" ").join("+");
   getForecastWeatherData(city);
-  getCurrentWeatherData(city);
+  getCoordinatesFromCityNameThenCallApi(city);
   $(event.target).prev().val("");
   cityName = city;
 }
@@ -125,10 +149,13 @@ function chooseWeatherConditionIcon(condition, area) {
   return imgEl;
 }
 
-function chooseBackgroundColor() {}
+// function chooseBackgroundColor() {}
 
 $(".btn").click(handleSearch);
 
-populateHistoryDropdown();
+// populateHistoryDropdown();
 // getForecastWeatherData(cityName);
 // getCurrentWeatherData(cityName);
+
+getCoordinatesFromCityNameThenCallApi("new york");
+// callFromOneCallApi("chicago");
