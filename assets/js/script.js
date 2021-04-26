@@ -11,14 +11,9 @@ var forecastTempDiv = $(".forecast-temp");
 var searchButton = $(".btn");
 
 var apiKey = "5522e24e3f2cbcf4ca631dd68ebac697";
-var searchHistory = localStorage.getItem("weather-search-history") // gets localStorage item if it exists
+var searchHistory = localStorage.getItem("weather-search-history") // gets search history from localStorage if it exists
   ? JSON.parse(localStorage.getItem("weather-search-history"))
   : [];
-
-var cityName = // gets last searched city if searchHistory is not empty, used to reload last search
-  searchHistory.length > 0
-    ? searchHistory[searchHistory.length - 1]
-    : "new+york";
 
 function getCoordinatesFromCityNameThenCallApi(city) {
   /* 
@@ -185,5 +180,5 @@ populateHistoryDropdown();
 getCoordinatesFromCityNameThenCallApi(
   localStorage.getItem("current-city")
     ? localStorage.getItem("current-city")
-    : "new york"
+    : "new+york"
 );
