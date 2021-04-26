@@ -143,6 +143,7 @@ function populateHistoryDropdown() {
       .text(item.split("+").join(" "))
       .click(function () {
         getCoordinatesFromCityNameThenCallApi(item);
+        localStorage.setItem("current-city", item);
       });
     $(".dropdown-menu").append(newLiEl);
   }
@@ -170,12 +171,18 @@ function chooseUvIndexColor(uvi) {
     return "orange";
   } else if (uvi < 11) {
     return "red";
+  } else {
+    return "purple";
   }
 }
 
-// initialize 
+// initialize
 $(".btn").click(handleSearch);
 
-// initialize the page with the default or last searched city so that there are 
+populateHistoryDropdown();
+// initialize the page with the default or last searched city so that there are
 // no empty fields
-getCoordinatesFromCityNameThenCallApi(cityName);
+getCoordinatesFromCityNameThenCallApi(
+    localStorage.getItem("current-city") ? localStorage.getItem("current-city") : "new york"
+)
+
