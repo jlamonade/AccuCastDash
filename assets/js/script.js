@@ -101,7 +101,7 @@ function populateForecastWeatherData(forecastArr) {
     $(".forecast-high-temp").eq(i).text(maxTemp);
     $(".forecast-low-temp").eq(i).text(minTemp);
     $(".forecast-humidity-span").eq(i).text(humidity);
-    $(".forecast-wind-span").eq(i).text(wind);
+    $(".forecast-wind-span").eq(i).text(Math.round(wind));
     $(".forecast-day").eq(i).text(date);
   }
 }
