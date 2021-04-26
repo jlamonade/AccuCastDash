@@ -183,6 +183,7 @@ populateHistoryDropdown();
 // initialize the page with the default or last searched city so that there are
 // no empty fields
 getCoordinatesFromCityNameThenCallApi(
-    localStorage.getItem("current-city") ? localStorage.getItem("current-city") : "new york"
-)
-
+  localStorage.getItem("current-city")
+    ? localStorage.getItem("current-city")
+    : "new york"
+);
