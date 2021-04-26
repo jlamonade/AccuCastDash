@@ -164,14 +164,12 @@ function chooseWeatherConditionIcon(condition, area) {
 function chooseUvIndexColor(uvi) {
   if (uvi < 3) {
     return "green";
-  } else if (uvi >= 3) {
+  } else if (uvi < 6) {
     return "yellow";
-  } else if (uvi >= 6) {
+  } else if (uvi < 8) {
     return "orange";
-  } else if (uvi >= 8) {
+  } else if (uvi < 11) {
     return "red";
-  } else if (uvi >= 11) {
-    return "purple";
   }
 }
 
